@@ -20,6 +20,7 @@ scraped politely        (deontic rules +         sections for             genera
 | [open-law](https://github.com/ConstitutiveTemplates/open-law) | Scrapes and consolidates legislation from official sources worldwide into one unified shape (Akoma Ntoso where offered) |
 | [law-map](https://github.com/ConstitutiveTemplates/law-map) | Machine-readable obligation graph — maps statutes, precedent, and guidance across jurisdictions to the technical duties software must satisfy |
 | [good-future-codex](https://github.com/ConstitutiveTemplates/good-future-codex) | Canonical legal & ethical prose sections, reviewed and versioned, vendored into generated `AGENTS.md` files |
+| [law-lint](https://github.com/ConstitutiveTemplates/law-lint) | Fast, lightweight linter that inspects source code and git diffs against legal and ethical triggers |
 
 ## The pipeline
 
