@@ -5,7 +5,7 @@ which rules apply to the code they generate, and a knowledge pipeline that
 keeps those rules current.
 
 ```text
-open-law                law-map                  good-future-codex        foundry
+open-law                law-map                  good-future-codex        daimonion
 world legislation  ->   obligation graph   ->    reviewed prose     ->    vendored into
 scraped politely        (deontic rules +         sections for             generated
                         jurisdiction             humans and AI           repos
@@ -16,7 +16,7 @@ scraped politely        (deontic rules +         sections for             genera
 
 | Repo | Role |
 |------|------|
-| [foundry](https://github.com/ConstitutiveTemplates/foundry) | Opinionated Copier template for Python projects: 8 project types + opt-in layers, Z3-verified questionnaire, security & compliance built in |
+|[daimonion](https://github.com/ConstitutiveTemplates/daimonion) | Opinionated Copier template for Python projects: 8 project types + opt-in layers, Z3-verified questionnaire, security & compliance built in |
 | [open-law](https://github.com/ConstitutiveTemplates/open-law) | Scrapes and consolidates legislation from official sources worldwide into one unified shape (Akoma Ntoso where offered) |
 | [law-map](https://github.com/ConstitutiveTemplates/law-map) | Machine-readable obligation graph — maps statutes, precedent, and guidance across jurisdictions to the technical duties software must satisfy |
 | [good-future-codex](https://github.com/ConstitutiveTemplates/good-future-codex) | Canonical legal & ethical prose sections, reviewed and versioned, vendored into generated `AGENTS.md` files |
@@ -32,7 +32,7 @@ scraped politely        (deontic rules +         sections for             genera
    an issue when law or sources go stale.
 3. **good-future-codex** renders obligations into reviewed prose for humans
    and coding agents.
-4. **foundry** vendors pinned snapshots into generated repositories —
+4. **daimonion** vendors pinned snapshots into generated repositories —
    `AGENTS.md` invariants, ethics appendices, and CI gates — so a new project
    starts compliant by default. Renders are pure functions of the template
    tree; nothing fetches law at render time.
