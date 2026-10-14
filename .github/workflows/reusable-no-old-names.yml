@@ -1,0 +1,38 @@
+# Reusable "no old names" check. Fails if any retired name still
+# appears in the caller's tree, so DOC-2 regressions are caught in CI.
+
+name: no-old-names
+
+on:
+  workflow_call:
+    inputs:
+      exclude:
+        description: Extra grep --exclude glob for files that intentionally discuss old names.
+        default: ""
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  no-old-names:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Fail on retired names
+        run: |
+          patterns='ConstitutiveTemplates|kasi-x|python-copier-template|foundry|law-lint|codex|good-future-codex|orimono' # no-old-names-allow: this line defines the retired-name list
+          args=(--exclude-dir=.git)
+          if [ -n "${{ inputs.exclude }}" ]; then
+            args+=(--exclude="${{ inputs.exclude }}")
+          fi
+          # Lines containing the marker intentionally discuss old names
+          # (e.g. the BRK-9 note, the forbidden-name list). Everything else fails.
+          if grep -rniE "${args[@]}" "$patterns" . | grep -v 'no-old-names-allow'; then
+            echo "::error::Retired name(s) found above. See profile/README.md (old names) and CONTRIBUTING.md."
+            exit 1
+          fi
+          echo "No retired names found."
