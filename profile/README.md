@@ -1,4 +1,4 @@
-# ConstitutiveTemplates
+# politeuma
 
 Legal-aware project scaffolding for the AI-agent era: templates that know
 which rules apply to the code they generate, and a knowledge pipeline that
@@ -16,11 +16,11 @@ scraped politely        (deontic rules +         sections for             genera
 
 | Repo | Role |
 |------|------|
-|[architekton-py](https://github.com/ConstitutiveTemplates/architekton-py) | Opinionated Copier template for Python projects: 8 project types + opt-in layers, Z3-verified questionnaire, security & compliance built in |
-| [open-law](https://github.com/ConstitutiveTemplates/open-law) | Scrapes and consolidates legislation from official sources worldwide into one unified shape (Akoma Ntoso where offered) |
-| [law-map](https://github.com/ConstitutiveTemplates/law-map) | Machine-readable obligation graph — maps statutes, precedent, and guidance across jurisdictions to the technical duties software must satisfy |
-| [kanon](https://github.com/ConstitutiveTemplates/kanon) | Canonical legal & ethical prose sections, reviewed and versioned, vendored into generated `AGENTS.md` files |
-| [daimonion](https://github.com/ConstitutiveTemplates/daimonion) | Socrates' inner voice as a linter: fast, language-agnostic legal/ethical trigger scanning for diffs and source files, plus AGENTS.md ethics blocks for any repository |
+|[architekton-py](https://github.com/politeuma/architekton-py) | Opinionated Copier template for Python projects: 8 project types + opt-in layers, Z3-verified questionnaire, security & compliance built in |
+| [open-law](https://github.com/politeuma/open-law) | Scrapes and consolidates legislation from official sources worldwide into one unified shape (Akoma Ntoso where offered) |
+| [law-map](https://github.com/politeuma/law-map) | Machine-readable obligation graph — maps statutes, precedent, and guidance across jurisdictions to the technical duties software must satisfy |
+| [kanon](https://github.com/politeuma/kanon) | Canonical legal & ethical prose sections, reviewed and versioned, vendored into generated `AGENTS.md` files |
+| [daimonion](https://github.com/politeuma/daimonion) | Socrates' inner voice as a linter: fast, language-agnostic legal/ethical trigger scanning for diffs and source files, plus AGENTS.md ethics blocks for any repository |
 
 ## The pipeline
 
@@ -33,11 +33,11 @@ scraped politely        (deontic rules +         sections for             genera
    an issue when law or sources go stale.
 3. **kanon** renders obligations into reviewed prose for humans
    and coding agents.
-4. **daimonion** (formerly law-lint) ships a pinned snapshot inside its
+4. **daimonion** ships a pinned snapshot inside its
    wheel and inserts matching ethics sections into any project's
    `AGENTS.md` — whatever template it came from — and scans diffs against
    the same triggers.
-5. **architekton-py** (formerly daimonion) vendors pinned snapshots into
+5. **architekton-py** vendors pinned snapshots into
    generated repositories — `AGENTS.md` invariants, ethics appendices,
    and CI gates — so a new Python project starts compliant by default.
    Renders are pure functions of the template tree; nothing fetches law
