@@ -1,0 +1,33 @@
+name: Grounding proposal
+description: Propose or correct a legal grounding — no YAML or Git knowledge needed.
+title: "grounding: "
+labels: [legal-content]
+body:
+  - type: textarea
+    id: rule
+    attributes:
+      label: Which engineering rule is this about?
+      description: Plain words are fine, e.g. "don't put personal data in logs".
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: The legal source
+      description: Law or case name, article/section number, and a link to the official text.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change?
+      description: New grounding, correction, or "this law changed on <date>".
+    validations:
+      required: true
+  - type: checkboxes
+    id: advice
+    attributes:
+      label: Understanding
+      options:
+        - label: I understand contributions here are shared in good faith and are not legal advice to anyone.
+          required: true

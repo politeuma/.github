@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / support
+    url: https://github.com/politeuma/.github/blob/main/SUPPORT.md
+    about: Where to ask questions and how support works.
