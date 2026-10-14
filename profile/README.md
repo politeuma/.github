@@ -1,49 +1,57 @@
 # politeuma
 
-Legal-aware project scaffolding for the AI-agent era: templates that know
-which rules apply to the code they generate, and a knowledge pipeline that
-keeps those rules current.
+Laws, turned into short, sourced rules your code and your coding agents can follow.
 
-```text
-open-law                law-map                  kanon                   architekton-py / daimonion
-world legislation  ->   obligation graph   ->    reviewed prose     ->    vendored into
-scraped politely        (deontic rules +         sections for             generated
-                        jurisdiction             humans and AI           repos
-                        groundings)              agents
-```
+法律を、コードとコーディングエージェントが従える、出典付きの短いルールに。
+
+Coding agents now write much of our code, but they don't know which laws apply to it, and neither do most developers. Laws are long, scattered across countries, and keep changing.
+
+politeuma turns legal requirements into short, sourced rules that sit next to your code: in AGENTS.md, where people and agents read them, and as checks in CI.
+
+Example: GDPR Art. 5(1)(f), Japan's APPI Art. 23 and the FTC's Wyndham case all support the same engineering rule: don't put raw personal identifiers in logs. We write that rule once, with all three sources, and show it to whoever is about to add a log line.
+
+Not legal advice. These are engineering guardrails with citations; ask a qualified professional for compliance decisions.
+
+いまやコードの多くはコーディングエージェントが書きます。けれど、そのコードにどの法律が関わるのかを、エージェントは知りません。多くの開発者も同じです。法令は長く、国ごとに散らばり、しかも変わります。
+
+politeuma は、法律上の要求を出典付きの短いルールにして、コードのそばに置きます。人とエージェントが読む AGENTS.md に、そして CI のチェックとして。
+
+例：GDPR 第5条1項(f)、日本の個人情報保護法 第23条、米 FTC の Wyndham 事件は、どれも同じ技術的ルールの根拠になります。「個人を識別できる情報をそのままログに出さない」。このルールを3つの出典とともに一度だけ書き、ログ出力を書こうとしている人とエージェントに見せます。
+
+法的助言ではありません。出典付きの技術的なガードレールです。コンプライアンスの判断は専門家にご相談ください。
+
+## Start here
+
+- **Developer shipping with coding agents** — see what lands in your repo: [daimonion](https://github.com/politeuma/daimonion) writes the matching rules into your `AGENTS.md` and flags diffs that touch them. New Python project? [architekton-py](https://github.com/politeuma/architekton-py) starts with those rules built in.
+- **Agent user** — the 1-page [manifesto](manifesto.md) explains why this exists; the [glossary](glossary.md) defines every term your agent will quote at you.
+- **Legal expert** — the rules live in [law-map](https://github.com/politeuma/law-map) as obligations with cited groundings. Propose or correct a grounding via a [grounding proposal](../.github/ISSUE_TEMPLATE/grounding-proposal.yml); trajectory toward per-grounding review records is tracked there.
+- **Contributor** — read [CONTRIBUTING.md](../CONTRIBUTING.md), the [architecture diagram](diagram.md), and the [canonical disclaimer](disclaimer.md) before opening a PR.
 
 ## Repositories
 
-| Repo | Role |
-|------|------|
-|[architekton-py](https://github.com/politeuma/architekton-py) | Opinionated Copier template for Python projects: 8 project types + opt-in layers, Z3-verified questionnaire, security & compliance built in |
-| [open-law](https://github.com/politeuma/open-law) | Scrapes and consolidates legislation from official sources worldwide into one unified shape (Akoma Ntoso where offered) |
-| [law-map](https://github.com/politeuma/law-map) | Machine-readable obligation graph — maps statutes, precedent, and guidance across jurisdictions to the technical duties software must satisfy |
-| [kanon](https://github.com/politeuma/kanon) | Canonical legal & ethical prose sections, reviewed and versioned, vendored into generated `AGENTS.md` files |
-| [daimonion](https://github.com/politeuma/daimonion) | Socrates' inner voice as a linter: fast, language-agnostic legal/ethical trigger scanning for diffs and source files, plus AGENTS.md ethics blocks for any repository |
+| Repo | Subtitle |
+|------|----------|
+| [open-law](https://github.com/politeuma/open-law) | Polite fetchers for official legislation APIs: 13 sources (UK, Japan, EU, US eCFR and more) in one JSON shape. / 各国の公式法令 API から礼儀正しく取得するアダプタ集。13ソース（英・日・EU・米 eCFR ほか）を共通の JSON 形式で。 |
+| [law-map](https://github.com/politeuma/law-map) | What software must and must not do, linked to the statutes, cases and guidance behind each rule. / ソフトウェアがすべきこと・してはならないことを、根拠となる法令・判例・ガイドラインと結びつけた地図。 |
+| [kanon](https://github.com/politeuma/kanon) | Short, sourced guidance for AGENTS.md: facts, don'ts, do's, checks, and what is changing. / AGENTS.md に入る出典付きの短い指針。事実・禁止・推奨・運用・制度変更の5節。 |
+| [daimonion](https://github.com/politeuma/daimonion) | Adds the legal and ethical rules relevant to your repo to AGENTS.md, and reminds you when a diff touches them. Any language. / リポジトリに関係する法・倫理のルールを AGENTS.md に加え、差分がそれに触れたら知らせます。言語は問いません。 |
+| [architekton-py](https://github.com/politeuma/architekton-py) | A Copier template for Python projects that starts with an AGENTS.md, strict CI, and the rules that match the project kind. / Python プロジェクト用の Copier テンプレート。AGENTS.md、厳格な CI、プロジェクトの種類に合ったルールが最初から入ります。 |
+| [architekton-py-example](https://github.com/politeuma/architekton-py-example) | A project generated by architekton-py and regenerated on every release, so you can see exactly what it produces. / architekton-py で生成し、リリースごとに再生成しているプロジェクト。テンプレートが何を作るかをそのまま見られます。 |
 
-## The pipeline
+How they fit together: [architecture diagram](diagram.md). The short version: **law-map is the rulebook**, open-law watches the cited laws for amendments (a thin, optional feed), daimonion renders versioned rules into `AGENTS.md` and CI, and architekton-py is one adoption entry point among others.
 
-1. **open-law** fetches legislation through polite, robots-aware adapters —
-   one per jurisdiction — and normalizes it.
-2. **law-map** organizes that law by *function, not form* (functional
-   equivalence): a Japanese statute, an EU regulation, and a US enforcement
-   precedent that demand the same technical behavior ground one obligation
-   node. Every grounding carries a `review_by` date; weekly drift-watch opens
-   an issue when law or sources go stale.
-3. **kanon** renders obligations into reviewed prose for humans
-   and coding agents.
-4. **daimonion** ships a pinned snapshot inside its
-   wheel and inserts matching ethics sections into any project's
-   `AGENTS.md` — whatever template it came from — and scans diffs against
-   the same triggers.
-5. **architekton-py** vendors pinned snapshots into
-   generated repositories — `AGENTS.md` invariants, ethics appendices,
-   and CI gates — so a new Python project starts compliant by default.
-   Renders are pure functions of the template tree; nothing fetches law
-   at render time.
+Law-aware tooling for software teams that work with coding agents. / コーディングエージェントと働くチームのための、法を意識した道具。
+
+## Language policy
+
+Canonical language is English; a maintained Japanese translation ships alongside. / 正本は英語、日本語は同等に保守する翻訳です。
+
+## A note on old names
+
+This org was previously named `ConstitutiveTemplates`. <!-- no-old-names-allow: BRK-9 mandated note about the old org name --> Old `github.com/ConstitutiveTemplates/...` links redirect for now, but redirects die if the name is ever taken by someone else — which would also let a stranger run code under URLs our docs once printed (repojacking). Do not depend on old-name URLs. The org owner is re-registering the old org name to hold it; until then, treat every old-name reference as a bug and report it.
 
 ## Not legal advice
 
-Everything here is a technical guardrail, not legal counsel. Groundings cite
-primary sources; expert review is required for real compliance decisions.
+Not legal advice. Engineering guardrails with citations; ask a qualified professional for compliance decisions. / 法的助言ではありません。出典付きの技術的ガードレールです。コンプライアンスの判断は専門家にご相談ください。
+
+Full text (short and long, EN/JA): [disclaimer.md](disclaimer.md).
