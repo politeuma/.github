@@ -10,7 +10,7 @@ politeuma turns legal requirements into short, sourced rules that sit next to yo
 
 Example: GDPR Art. 5(1)(f), Japan's APPI Art. 23 and the FTC's Wyndham case all support the same engineering rule: don't put raw personal identifiers in logs. We write that rule once, with all three sources, and show it to whoever is about to add a log line.
 
-Not legal advice. These are engineering guardrails with citations; ask a qualified professional for compliance decisions.
+Not legal advice. Engineering guardrails with citations; ask a qualified professional for compliance decisions.
 
 いまやコードの多くはコーディングエージェントが書きます。けれど、そのコードにどの法律が関わるのかを、エージェントは知りません。多くの開発者も同じです。法令は長く、国ごとに散らばり、しかも変わります。
 
